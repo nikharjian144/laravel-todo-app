@@ -15,7 +15,7 @@
             <form method="POST" action={{url('/task')}}>
                 {{csrf_field()}}
                 <div class="form-group">
-                    <input type="text" class="form-control" name="task" placeholder="Enter Task">
+                    <input type="text" class="form-control" name="task" placeholder="Enter Task" required>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Add</button>
@@ -25,7 +25,7 @@
             <hr>
             
             <h4 class="my-3">Todo List</h4>
-            <table class="table table-responsive">
+            <table class="table table-responsive table-bordered">
                 <thead>
                     <tr>
                         <th width="10%">Id</th>
@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ $task->id }}</td>
                             <td>{{ $task->task }}</td>
-                            <td>{{ $task->created_at }}</td>
+                            <td>{{ date('d-m-Y H:i:s', strtotime($task->created_at)) }}</td>
                             <td>
                                 {{ $task->iscompleted ? 'Completed' : 'In-complete' }}
                             </td>
@@ -60,7 +60,7 @@
             <hr>
 
             <h4 class="my-3">Completed</h4>
-            <table class="table table-responsive">
+            <table class="table table-responsive table-bordered">
                 <thead>
                     <tr>
                         <th width="10%">Id</th>
@@ -75,7 +75,7 @@
                         <tr>
                             <td width="10%">{{ $c_task->id }}</td>
                             <td width="20%">{{ $c_task->task }}</td>
-                            <td width="20%">{{ $c_task->created_at }}</td>
+                            <td width="20%">{{ date('d-m-Y H:i:s', strtotime($c_task->created_at)) }}</td>
                             <td width="20%">
                                 {{ $c_task->iscompleted ? 'Completed' : 'In-complete' }}
                             </td>
